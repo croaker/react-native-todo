@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 class TaskList extends Component {
@@ -8,10 +8,17 @@ class TaskList extends Component {
   }
 
   renderItem({ item: task }) {
+    const descriptionStyle = [
+      styles.taskDescription,
+      task.complete && styles.taskDescriptionComplete
+    ];
+
     return (
-      <Text>
-        {task.description}
-      </Text>
+      <View style={styles.taskContainer}>
+        <Text style={descriptionStyle}>
+          {task.description}
+        </Text>
+      </View>
     );
   }
 
@@ -29,5 +36,21 @@ class TaskList extends Component {
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired
 };
+
+const styles = StyleSheet.create({
+  taskContainer: {
+    padding: 15,
+    borderColor: '#eee',
+    borderBottomWidth: 1
+  },
+  taskDescription: {
+    fontSize: 16,
+    color: '#16161d'
+  },
+  taskDescriptionComplete: {
+    color: '#ccc',
+    textDecorationLine: 'line-through',
+  }
+});
 
 export default TaskList;
