@@ -5,12 +5,21 @@ import PropTypes from 'prop-types';
 import Task from './Task';
 
 class TaskList extends Component {
-  keyExtractor(task) {
-    return task.id;
+  onTaskPress = (id) => {
+    console.log('Task #', id, ' pressed!');
   }
 
-  renderItem({ item: task }) {
-    return <Task {...task} />;
+  renderItem = ({ item: task }) => {
+    return (
+      <Task
+        {...task}
+        onPress={this.onTaskPress}
+      />
+    );
+  }
+
+  keyExtractor(task) {
+    return task.id;
   }
 
   render() {

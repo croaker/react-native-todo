@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 
-const Task = ({ description, complete }) => {
+const Task = ({ id, description, complete, onPress }) => {
   const descriptionStyle = [
     styles.description,
     complete && styles.descriptionComplete
@@ -10,16 +10,20 @@ const Task = ({ description, complete }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={descriptionStyle}>
-        {description}
-      </Text>
+      <TouchableOpacity onPress={() => onPress(id)}>
+        <Text style={descriptionStyle}>
+          {description}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 Task.propTypes = {
+  id: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  complete: PropTypes.bool.isRequired
+  complete: PropTypes.bool.isRequired,
+  onPress: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
