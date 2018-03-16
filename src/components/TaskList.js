@@ -27,14 +27,12 @@ class TaskList extends Component {
     return task.id;
   }
 
-  renderItem = ({ item: task }) => {
-    return (
-      <Task
-        {...task}
-        onPress={this.onTaskPress}
-      />
-    );
-  }
+  renderItem = ({ item: task }) => (
+    <Task
+      {...task}
+      onPress={this.onTaskPress}
+    />
+  );
 
   render() {
     return (
